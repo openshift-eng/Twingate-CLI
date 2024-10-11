@@ -1,0 +1,48 @@
+---
+- name: Run Python script
+  hosts: localhost  # Adjust the host as needed
+  environment:
+    TG_TENANT: "{{ tg_tenant }}"
+    TG_API: "{{ custom_token }}"
+
+  tasks:
+
+    - name: Install multi python packages with version specifiers
+      ansible.builtin.pip:
+        name:
+          - pandas
+
+    - name: Output var
+      ansible.builtin.debug:
+        msg: "Script output: {{ tg_tenant }}"
+
+    - name: Basic usage
+      ansible.builtin.debug:
+        msg: "'{{ lookup('ansible.builtin.env', 'TG_TENANT') }}'"
+
+    - name: Clone the Git repository
+      ansible.builtin.git:
+        repo: https://github.com/jimccann-rh/Twingate-CLI.git
+        dest: /tmp/Twingate-CLI
+        # force: true
+
+    - name: Check if repository was cloned successfully
+      ansible.builtin.stat:
+        path: /tmp/Twingate-CLI/.git
+      register: git_repo_created
+
+    - name: Fail if repository was not cloned
+      ansible.builtin.fail:
+        msg: "Failed to clone Git repository"
+      when: not git_repo_created.stat.exists
+
+    - name: Execute Python script
+      ansible.builtin.script: /tmp/Twingate-CLI/deletependingusertimelimit.py
+      args:
+        chdir: /tmp/Twingate-CLI
+      no_log: true
+      register: script_output
+
+    - name: Output Python script
+      ansible.builtin.debug:
+        msg: "Script output: {{ script_output.stdout }}"
