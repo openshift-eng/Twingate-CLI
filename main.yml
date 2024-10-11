@@ -22,7 +22,7 @@
 
     - name: Clone the Git repository
       ansible.builtin.git:
-        repo: https://github.com/jimccann-rh/Twingate-CLI.git
+        repo: https://github.com/openshift-eng/Twingate-CLI.git
         dest: /tmp/Twingate-CLI
         # force: true
 
