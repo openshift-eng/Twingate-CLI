@@ -66,8 +66,7 @@ for element in json_data:
 
     if check_timestamp(timestamp):
       # Run your task here
-      #print("Timestamp is over 24 hours old. Running task...")
-      print("Timestamp is over 30 days old. Running task...")
+      #print("Timestamp is over 30 days old. Running task...")
       if state == "PENDING":
         print("DELETE Account pending to long")
         print(f"createdAt: {createdat} {id} {email} {state}")
@@ -79,6 +78,7 @@ for element in json_data:
     else:
       #print("Timestamp is not over 24 hours old. Skipping task.")
       print("Timestamp is not over 30 days old. Skipping task.")
+      print(f"createdAt: {createdat} {email} {state}")
 
 
 animals = ['BlueFly', 'BlackEel', 'RedBoa', 'BlackBat', 'BlackBoa', 'OrangeFox', 'OrangeApe', 'GreenApe', 'WhiteApe', 'PurpleElk', 'RedCow', 'GreenFox', 'YellowFox', 'PinkBoa', 'YellowElk', 'PinkFox', 'GreenBoa', 'RedBat', 'PurpleApe', 'OrangeBat', 'YellowEel', 'OrangeYak', 'RedDog', 'PinkEel', 'PurpleBat', 'OrangeElk', 'BlueBoa', 'OrangeEel', 'GreenCat', 'WhiteDog', 'OrangeCat', 'BlueCat', 'YellowCat', 'GreenCow', 'BlackYak', 'RedCat', 'WhiteFox']
