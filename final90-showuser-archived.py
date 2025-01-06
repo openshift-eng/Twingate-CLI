@@ -139,7 +139,10 @@ for record in newest_records:
     print(f"ID: {record['ID']}, EMAIL: {record['EMAIL']}, STATE: {record['STATE']}, DATE: {record['DATE']}")
 
 
-    print(f"$$$$$$$$$$$$$$$$$$$$")
+    print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+
+print("COMPLETED")
 
 animals = ['BlueFly', 'BlackEel', 'RedBoa', 'BlackBat', 'BlackBoa', 'OrangeFox', 'OrangeApe', 'GreenApe', 'WhiteApe', 'PurpleElk', 'RedCow', 'GreenFox', 'YellowFox', 'PinkBoa', 'YellowElk', 'PinkFox', 'GreenBoa', 'RedBat', 'PurpleApe', 'OrangeBat', 'YellowEel', 'OrangeYak', 'RedDog', 'PinkEel', 'PurpleBat', 'OrangeElk', 'BlueBoa', 'OrangeEel', 'GreenCat', 'WhiteDog', 'OrangeCat', 'BlueCat', 'YellowCat', 'GreenCow', 'BlackYak', 'RedCat', 'WhiteFox']
 
