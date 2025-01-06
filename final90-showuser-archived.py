@@ -34,6 +34,19 @@ json_data = json.loads(output)
 # Print the JSON data
 #print(json.dumps(json_data, indent=4))
 
+def parse_args():
+    """
+    Parses command-line arguments using argparse.
+
+    Returns:
+        Namespace: An object containing the parsed arguments.
+    """
+    parser = argparse.ArgumentParser(description="Remove INACTIVE users with 'enable' flag")
+    parser.add_argument("--enable", action="store_true", help="Enable a specific feature")
+    return parser.parse_args()
+
+args = parse_args()
+
 def check_timestamp(timestamp):
     created_at = datetime.datetime.fromisoformat(timestamp)
 
@@ -140,6 +153,17 @@ for record in newest_records:
 
 
     print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+    if args.enable: 
+      print("DELETE Account NOT ACTIVE")
+      print(f"ID: {record['ID']}, EMAIL: {record['EMAIL']}, STATE: {record['STATE']}, DATE: {record['DATE']}")
+      time.sleep(10)
+      removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", {record['ID']}]
+      subprocess.call(removeuser)
+      print(removeuser)
+      print("@@@@@ user removed @@@@@")
+
+
 
 
 print("COMPLETED")
