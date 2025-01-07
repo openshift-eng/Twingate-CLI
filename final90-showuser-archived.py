@@ -149,6 +149,7 @@ def get_newest_record_per_email(json_data):
 newest_records = get_newest_record_per_email(json_data)
 
 for record in newest_records:
+    print("Possible user to remove to save costs:")
     print(f"ID: {record['ID']}, EMAIL: {record['EMAIL']}, STATE: {record['STATE']}, DATE: {record['DATE']}")
 
 
