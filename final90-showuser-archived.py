@@ -42,7 +42,8 @@ def parse_args():
         Namespace: An object containing the parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Remove INACTIVE users with 'enable' flag")
-    parser.add_argument("--enable", action="store_true", help="Enable a specific feature")
+    parser.add_argument("--enable", action="store_true", help="Enable to REMOVE inactive users")
+    parser.add_argument("--displayAA", action="store_true", help="Display all data")
     return parser.parse_args()
 
 args = parse_args()
@@ -74,20 +75,23 @@ for element in json_data:
     slogin = node["lastSuccessfulLoginAt"]
     #print(f"ID: {id} {email} {state} {slogin}")
 
-    if state == "ARCHIVED":
-      print(f"ID: {id} EMAIL: {email} STATE: {state} DATE: {slogin}")
-      #print(id, email ,state, slogin)
 
-      print(f"#############################")
+    if args.displayAA:
+       if state == "ARCHIVED":
+         print(f"ID: {id} EMAIL: {email} STATE: {state} DATE: {slogin}")
+         #print(id, email ,state, slogin)
+   
+         print(f"#############################")
+   
+       if state == "ACTIVE":
+         print(f"ID: {id} EMAIL: {email} STATE: {state} DATE: {slogin}")
+         #print(id, email ,state, slogin)
+   
+         print(f"*****************************")
 
-    if state == "ACTIVE":
-      print(f"ID: {id} EMAIL: {email} STATE: {state} DATE: {slogin}")
-      #print(id, email ,state, slogin)
 
-      print(f"*****************************")
-
-
-print("DONE")
+if args.displayAA:
+  print("DONE")
 
 from datetime import datetime, timedelta, timezone
 
