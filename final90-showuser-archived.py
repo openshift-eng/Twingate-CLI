@@ -34,6 +34,17 @@ json_data = json.loads(output)
 # Print the JSON data
 #print(json.dumps(json_data, indent=4))
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 def parse_args():
     """
     Parses command-line arguments using argparse.
@@ -153,15 +164,15 @@ def get_newest_record_per_email(json_data):
 newest_records = get_newest_record_per_email(json_data)
 
 for record in newest_records:
-    print("Possible user to remove to save costs:")
-    print(f"ID: {record['ID']}, EMAIL: {record['EMAIL']}, STATE: {record['STATE']}, DATE: {record['DATE']}")
+    print(f"{bcolors.OKCYAN}Possible user to remove to save costs:{bcolors.ENDC}")
+    print(f"ID: {record['ID']},  {bcolors.WARNING}EMAIL: {record['EMAIL']}{bcolors.ENDC}, STATE: {bcolors.OKBLUE}{record['STATE']}{bcolors.ENDC}, DATE: {record['DATE']}")
 
 
-    print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    print(f"{bcolors.OKGREEN}$$$$$$$$$$$$$$$$$$$$$$$$$$$$$${bcolors.ENDC}")
 
     if args.enable: 
-      print("DELETE Account NOT ACTIVE")
-      print(f"ID: {record['ID']}, EMAIL: {record['EMAIL']}, STATE: {record['STATE']}, DATE: {record['DATE']}")
+      print(f"{bcolors.FAIL}DELETE Account NOT ACTIVE{bcolors.ENDC}")
+      print(f"ID: {record['ID']}, {bcolors.WARNING}EMAIL: {record['EMAIL']}{bcolors.ENDC}, STATE: {record['STATE']}, DATE: {record['DATE']}")
       time.sleep(10)
       removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", {record['ID']}]
       subprocess.call(removeuser)
