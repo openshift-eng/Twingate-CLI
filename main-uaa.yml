@@ -1,5 +1,5 @@
 ---
-- name: Run Python script remove user that have not accepted invite in 30 days
+- name: Run Python script to remove users that have not access TG in 90 days
   hosts: localhost  # Adjust the host as needed
   environment:
     TG_TENANT: "{{ tg_tenant }}"
@@ -37,7 +37,7 @@
       when: not git_repo_created.stat.exists
 
     - name: Execute Python script
-      ansible.builtin.script: /tmp/Twingate-CLI/deletependingusertimelimit.py
+      ansible.builtin.script: /tmp/Twingate-CLI/final90-showuser-archived.py
       args:
         chdir: /tmp/Twingate-CLI
       no_log: true
