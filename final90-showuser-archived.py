@@ -53,7 +53,7 @@ def parse_args():
         Namespace: An object containing the parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Remove INACTIVE users with 'enable' flag")
-    parser.add_argument("--enable", action="store_true", help="Enable to REMOVE inactive users")
+    parser.add_argument("--enable", action="store_true", help="Enable to CHECK to REMOVE inactive users")
     parser.add_argument("--displayAA", action="store_true", help="Display all data")
     return parser.parse_args()
 
@@ -170,14 +170,40 @@ for record in newest_records:
 
     print(f"{bcolors.OKGREEN}$$$$$$$$$$$$$$$$$$$$$$$$$$$$$${bcolors.ENDC}")
 
+    datainputjsonU = ["python3", "./tgcli.py", "-s", session, "user", "list"]
+    subprocess.call(datainputjsonU, stdout=subprocess.DEVNULL)
+    outputU = subprocess.check_output(datainputjsonU, encoding='UTF-8')
+
+    json_dataU = json.loads(outputU)
+
     if args.enable: 
       print(f"{bcolors.FAIL}DELETE Account NOT ACTIVE{bcolors.ENDC}")
       print(f"ID: {record['ID']}, {bcolors.WARNING}EMAIL: {record['EMAIL']}{bcolors.ENDC}, STATE: {record['STATE']}, DATE: {record['DATE']}")
-      time.sleep(10)
-      removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", {record['ID']}]
-      subprocess.call(removeuser)
-      print(removeuser)
-      print(f"{bcolors.BOLD}@@@@@ user removed @@@@@{bcolors.ENDC}")
+
+#      print(getuser, email, record['EMAIL'])
+      
+      for element in json_dataU:
+        for item in element:
+          # Access the nested "node" dictionary
+          node = item["node"]
+          #print(element)
+          ## Extract and print the "createdAt" value
+          createdat = node["createdAt"]
+          id = node["id"]
+          email = node["email"]
+          state = node["state"]
+          
+          if args.displayAA:
+            print(f"********************* createdAt: {createdat} {id} {email} {state}")
+            if record['EMAIL'] == email:
+              print(email, record['EMAIL'], id, record['ID'])
+
+          if record['EMAIL'] == email:
+            removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", id]
+            print(removeuser, record['EMAIL'])
+            time.sleep(10)
+            #subprocess.call(removeuser)
+            print(f"{bcolors.BOLD}@@@@@ user removed @@@@@{bcolors.ENDC}")
 
 
 
