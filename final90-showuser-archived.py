@@ -202,7 +202,7 @@ for record in newest_records:
             removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", id]
             print(removeuser, record['EMAIL'])
             time.sleep(10)
-            #subprocess.call(removeuser)
+            subprocess.call(removeuser)
             print(f"{bcolors.BOLD}@@@@@ user removed @@@@@{bcolors.ENDC}")
 
 

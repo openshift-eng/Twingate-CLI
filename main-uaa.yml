@@ -37,7 +37,7 @@
       when: not git_repo_created.stat.exists
 
     - name: Execute Python script
-      ansible.builtin.script: /tmp/Twingate-CLI/final90-showuser-archived.py
+      ansible.builtin.script: /tmp/Twingate-CLI/final90-showuser-archived.py --enable
       args:
         chdir: /tmp/Twingate-CLI
       no_log: true
