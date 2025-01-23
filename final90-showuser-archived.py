@@ -195,7 +195,7 @@ for record in newest_records:
           role = node["role"]
 
           if args.displayAA:
-            print(f"********************* createdAt: {createdat} {id} {email} {state}")
+            print(f"********************* createdAt: {createdat} {id} {email} {state} {role}")
             if record['EMAIL'] == email:
               print(email, record['EMAIL'], id, record['ID'])
 
