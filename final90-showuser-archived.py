@@ -192,20 +192,19 @@ for record in newest_records:
           id = node["id"]
           email = node["email"]
           state = node["state"]
-          
+          role = node["role"]
+
           if args.displayAA:
             print(f"********************* createdAt: {createdat} {id} {email} {state}")
             if record['EMAIL'] == email:
               print(email, record['EMAIL'], id, record['ID'])
 
-          if record['EMAIL'] == email:
+          if record['EMAIL'] == email and role == "MEMBER":
             removeuser = ["python3", "./tgcli.py", "-s", session, "user", "delete", "-i", id]
             print(removeuser, record['EMAIL'])
             time.sleep(10)
             subprocess.call(removeuser)
             print(f"{bcolors.BOLD}@@@@@ user removed @@@@@{bcolors.ENDC}")
-
-
 
 
 print("COMPLETED")
