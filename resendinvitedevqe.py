@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import csv
 import subprocess
 import os
@@ -6,6 +8,10 @@ import string
 import re
 import secrets
 import json
+import argparse
+import time
+import datetime
+from datetime import datetime
 
 #Twingate-CLI
 
