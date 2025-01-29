@@ -4,7 +4,7 @@
   environment:
     TG_TENANT: "{{ tg_tenant }}"
     TG_API: "{{ custom_token }}"
-
+    TG_OVERIDEDATA: "{{ overidedata }}"
 
   tasks:
     - name: create account varible

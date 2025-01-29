@@ -17,6 +17,7 @@ from datetime import datetime
 
 logintenat = os.environ["TG_TENANT"]
 loginapi = os.environ["TG_API"]
+overidedata = os.environ["TG_OVERIDEDATA"]
 
 
 loginoutput = subprocess.check_output('python3 ./tgcli.py auth login -t ' + logintenat + ' -a ' + loginapi, shell=True)
@@ -58,6 +59,11 @@ with open(filename, 'r') as f:
 
     netname = newTGROUP
     #netname = "IBMC-devqe"
+    if overidedata is None:
+      print("Data is null. Skipping processing.")
+    elif overidedata: 
+      print("Overiding Twingate Group name")
+      netname = overidedata
 
     for node in data0[0]:
       if node['node']['name'] == netname:
