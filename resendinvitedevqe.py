@@ -32,6 +32,7 @@ with open(filename, 'r') as f:
     newGroup = row[2]
     newFirst = row[3]
     newLast = row[4]
+    newTGROUP = row[5]
     print(f"First name:{newFirst}, Last name:{newLast}, Email:{newUserEmail}")
     command = ["python3", "./tgcli.py", "-s", session, "user", "create", "-e", newUserEmail, "-r", "MEMBER", "-s", "true", "-f", newFirst, "-l", newLast]
     subprocess.call(command)
@@ -55,7 +56,8 @@ with open(filename, 'r') as f:
     f.close()
 
 
-    netname = "IBMC-devqe"
+    netname = newTGROUP
+    #netname = "IBMC-devqe"
 
     for node in data0[0]:
       if node['node']['name'] == netname:
