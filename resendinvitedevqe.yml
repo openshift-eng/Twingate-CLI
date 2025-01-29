@@ -1,5 +1,5 @@
 ---
-- name: Run Python script remove user that have not accepted invite in 30 days
+- name: Run Python script to INVITE user to Twingate
   hosts: localhost  # Adjust the host as needed
   environment:
     TG_TENANT: "{{ tg_tenant }}"
