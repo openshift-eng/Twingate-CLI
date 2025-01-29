@@ -48,7 +48,7 @@
         create: true
 
     - name: Execute Python script
-      ansible.builtin.script: /tmp/Twingate-CLI/resendinvitedevqe.py
+      ansible.builtin.script: /tmp/Twingate-CLI/resendinvite.py
       args:
         chdir: /tmp/Twingate-CLI
       no_log: true
