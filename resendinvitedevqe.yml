@@ -51,7 +51,7 @@
       ansible.builtin.script: /tmp/Twingate-CLI/resendinvitedevqe.py
       args:
         chdir: /tmp/Twingate-CLI
-      #no_log: true
+      no_log: true
       register: script_output
 
     - name: Output Python script
