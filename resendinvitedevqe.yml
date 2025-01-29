@@ -45,6 +45,7 @@
         path: /tmp/Twingate-CLI/username.csv
         line: "{{ useraccount }}"
         state: present
+        create: true
 
     - name: Execute Python script
       ansible.builtin.script: /tmp/Twingate-CLI/resendinvitedevqe.py
